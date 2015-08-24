@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+	<title>Hello Worlds</title>
+</head>
+<body>
+	<button id="silly">Ajax</button>
+	<button id="clear">Clear it</button>
+	<br>
+	<input type="textbox" id="myText" value="none">
+	<br>
+	<select id="mySelect">
+		<option value="1">Do</option>
+		<option value="2">Re</option>
+		<option value="3">Mi</option>
+		<option value="4">Fa</option>
+	</select>
+	<div id="results"></div>
+
+
+<script src="js/zepto.js"></script>
+<script src="js/silly.js"></script>
+<script>
+
+$('#silly').click(function() {
+	$.get('http://www.magicchristmaslights.com/ajaxresult.asp', function(data){
+		$('#results').html(data);
+	})
+	//SILLY.DoIt($('#results'));
+});
+
+$('#clear').click(function() {
+	$('#results').html('');
+});
+
+
+</script>
+
+</body>
+</html>
