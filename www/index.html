@@ -23,25 +23,51 @@
 	</table>
 	<br>
 	<button id="silly">Ajax</button>
-	<button id="clear">Clear it</button>
-	<br>
-	<input type="textbox" id="myText" value="none">
-	<br>
-	<select id="mySelect">
-		<option value="1">Do</option>
-		<option value="2">Re</option>
-		<option value="3">Mi</option>
-		<option value="4">Fa</option>
-	</select>
 	<div id="results"></div>
 
 
 <script src="js/zepto.js"></script>
 <script src="js/silly.js"></script>
 <script>
+	var map;
+	var markers = [];
+	var strZip;
+	var strRadius = <%=intSelectedRadius%>;
+	function initialize() {
+
+	  var mapOptions = {
+	  	panControl:false,
+	  	zoom: 2,
+	  	center: new google.maps.LatLng(<%=strLat%>, <%=strLng%>)
+	  };
+	 	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		<%=strInitial%>
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+	var infowindow = new google.maps.InfoWindow({maxWidth: 250});
+
+</script>
+
+
+	<div name="displayListing" id="displayListing" class="searchResultsDiv">
+		<div style="width:100%; text-align:center;">
+			<%=strWaitIcon%>
+		</div>
+	</div>
+<br><br><br>
+	<div id="map-canvas" class="searchMapDiv">
+		<div style="width:100%; text-align:center;">
+			<img src="https://www.magicchristmaslights.com/images/spinner3-greenie.gif" style="position:relative;">
+		</div>
+	</div>
+
+
+
+<script>
 
 $('#silly').click(function() {
 	$.get('http://www.magicchristmaslights.com/mobile/search.asp', function(data){
+		alert(data)
 		$('#results').html(data);
 	})
 	//SILLY.DoIt($('#results'));
